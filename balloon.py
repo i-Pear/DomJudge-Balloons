@@ -44,4 +44,4 @@ while True:
     while len(stack) > 0:
         input('! Publish: Color=' + str(stack[-1][1]) + '-' + str(stack[-1][3][2:5]) + '  runID=' + str(stack[-1][0])
               + '  TeamName=' + str(stack[-1][3]) + '  Time=' + str(stack[-1][2]) + '\n\n')
-       stack.pop()
+        stack.pop()
