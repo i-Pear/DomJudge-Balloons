@@ -3,8 +3,6 @@ from selenium import webdriver
 import datetime
 import time
 from selenium.webdriver.support.ui import WebDriverWait
-from os import path
-from selenium.webdriver import DesiredCapabilities
 
 driver = webdriver.Chrome()
 
