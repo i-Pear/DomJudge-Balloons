@@ -1,5 +1,9 @@
 from escpos.printer import Serial, Usb
 import queue
+import tempfile
+import win32api
+import win32print
+import threading
 
 
 class print_pkg:
@@ -9,10 +13,24 @@ class print_pkg:
 print_queue = queue.Queue()
 
 
-def print_service():
-    while True:
-        cnt = print_queue.get()
-        # print item
+def print_str(s):
+    filename = tempfile.mktemp(".txt")
+    open(filename, "w", encoding='utf-8').write(s)
+    win32api.ShellExecute(
+        0,
+        "print",
+        filename,
+        '/d:"%s"' % win32print.GetDefaultPrinter(),
+        ".",
+        0
+    )
+
+
+class PrintService(threading.Thread):
+    def run(self) -> None:
+        while True:
+            cnt = print_queue.get()
+            print_str(cnt)
 
 
 if __name__ == '__main__':
