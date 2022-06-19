@@ -1,4 +1,4 @@
-from escpos.printer import Serial
+from escpos.printer import Serial, Usb
 import queue
 
 
@@ -17,7 +17,7 @@ def print_service():
 
 if __name__ == '__main__':
     # unit test
-    serial = Serial('COM3', 38400, timeout=1)
+    serial = Usb(0x8866, 0x0100, 0)
     serial.text("Hello world\n")
     serial.barcode('1324354657687', 'EAN13', 64, 2, '', '')
     serial.cut()
